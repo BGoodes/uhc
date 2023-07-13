@@ -110,14 +110,14 @@ public class FileUtils {
     }
 
     /**
-     * Copies data from the input stream to the output stream. Optionally closes the streams when done.
+     * Copies data from the input stream to the output stream. Optionally closes the input stream when done.
      *
      * @param in the input stream
      * @param out the output stream
      * @param close true to close the streams after copying
      * @throws IOException if an I/O error occurs
      */
-    public static void copy(InputStream in, OutputStream out, boolean close) throws IOException {
+    private static void copy(InputStream in, OutputStream out, boolean close) throws IOException {
         try {
             byte[] buffer = new byte[1024];
             int lengthRead;
@@ -128,7 +128,6 @@ public class FileUtils {
         } finally {
             if (close) {
                 in.close();
-                out.close();
             }
         }
     }
