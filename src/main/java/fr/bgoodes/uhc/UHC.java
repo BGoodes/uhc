@@ -2,6 +2,7 @@ package fr.bgoodes.uhc;
 
 import fr.bgoodes.uhc.files.MCFile;
 import fr.bgoodes.uhc.game.GameManager;
+import fr.bgoodes.uhc.utils.TextUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -31,13 +32,15 @@ public final class UHC extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
+        TextUtils.loadLanguages();
+
         gameManager = new GameManager();
     }
 
     private void generateDefaultFiles() throws IOException {
         List<String> defaultFiles = Arrays.asList(
                 "server-config.yml",
-                "lang/fr.properties"
+                "lang/fr.yml"
         );
 
         for (String filename : defaultFiles) {
