@@ -2,12 +2,14 @@ package fr.bgoodes.uhc;
 
 import fr.bgoodes.uhc.files.MCFile;
 import fr.bgoodes.uhc.files.config.ServerConfig;
+import fr.bgoodes.uhc.files.config.services.ConfigService;
 import fr.bgoodes.uhc.files.config.services.YMLConfigService;
 import fr.bgoodes.uhc.game.GameManager;
 import fr.bgoodes.uhc.utils.LogUtils;
 import fr.bgoodes.uhc.utils.TextUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.List;
 public final class UHC extends JavaPlugin {
 
     private static UHC instance;
-
+    private static ServerConfig serverConfig;
     private static GameManager gameManager;
 
     @Override
@@ -35,19 +37,12 @@ public final class UHC extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
+        ConfigService configService = new YMLConfigService(new File(getDataFolder(), "server-config.yml"));
+        serverConfig = new ServerConfig(configService);
+
         TextUtils.loadLanguages();
 
         gameManager = new GameManager();
-
-        try {
-            ServerConfig serverConfig = new ServerConfig(new YMLConfigService(new MCFile("server-config.yml").getFile()));
-            LogUtils.info("Default language : " + serverConfig.default_language_key.getValue());
-            LogUtils.info("Option 1 : " + serverConfig.option1.getValue());
-            LogUtils.info("Option 2 : " + serverConfig.option2.getValue());
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private void generateDefaultFiles() throws IOException {
@@ -69,6 +64,10 @@ public final class UHC extends JavaPlugin {
 
     public static UHC getInstance() {
         return instance;
+    }
+
+    public static ServerConfig getServerConfig() {
+        return serverConfig;
     }
     public static GameManager getGameManager() {
         return gameManager;
