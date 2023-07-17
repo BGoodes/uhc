@@ -14,6 +14,10 @@ import java.nio.file.Path;
  */
 public class FileUtils {
 
+    private FileUtils() {
+        // Private constructor to prevent instantiation
+    }
+
     // CREATE ---------------------------------------------------
     /**
      * Creates a new file at the given path, including any necessary but nonexistent parent directories.
@@ -84,51 +88,32 @@ public class FileUtils {
     }
 
     /**
-     * Copies data from the input stream to the output file, creating any necessary directories, and optionally closes the stream when done.
+     * Copies data from the input stream to the output file, creating any necessary directories, and closes the stream when done.
      *
      * @param in the input stream
      * @param copy the output file
      * @throws IOException if an I/O error occurs
      */
     public static void copy(InputStream in, File copy) throws IOException {
-        copy(in, copy, true);
-    }
-
-    /**
-     * Copies data from the input stream to the output file, creating any necessary directories, and optionally closes the stream when done.
-     *
-     * @param in the input stream
-     * @param copy the output file
-     * @param close true to close the stream after copying
-     * @throws IOException if an I/O error occurs
-     */
-    public static void copy(InputStream in, File copy, Boolean close) throws IOException {
         Files.createDirectories(copy.toPath().getParent());
-        try (OutputStream out = Files.newOutputStream(copy.toPath())) {
-            copy(in, out, close);
+        try (InputStream inStream = in; OutputStream out = Files.newOutputStream(copy.toPath())) {
+            copy(inStream, out);
         }
     }
 
     /**
-     * Copies data from the input stream to the output stream. Optionally closes the input stream when done.
+     * Copies data from the input stream to the output stream.
      *
      * @param in the input stream
      * @param out the output stream
-     * @param close true to close the streams after copying
      * @throws IOException if an I/O error occurs
      */
-    private static void copy(InputStream in, OutputStream out, boolean close) throws IOException {
-        try {
-            byte[] buffer = new byte[1024];
-            int lengthRead;
+    private static void copy(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int lengthRead;
 
-            while ((lengthRead = in.read(buffer)) > 0) {
-                out.write(buffer, 0, lengthRead);
-            }
-        } finally {
-            if (close) {
-                in.close();
-            }
+        while ((lengthRead = in.read(buffer)) > 0) {
+            out.write(buffer, 0, lengthRead);
         }
     }
 }

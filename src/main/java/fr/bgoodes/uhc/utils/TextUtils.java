@@ -10,18 +10,18 @@ public class TextUtils {
 
     private static final LangManager langManager = new LangManager();
 
+    private TextUtils() {
+        // Private constructor to prevent instantiation
+    }
+
     public static void loadLanguages() {
         langManager.loadLanguages();
     }
+
     public static void sendMessage(Player player, String key, Object... args) {
         String langCode = getLangCodeForPlayer(player);
         String message = langManager.getTranslation(key, langCode);
         player.sendMessage(format(message));
-    }
-
-    public static void logInfo(String key, Object... args) {
-        String message = langManager.getTranslation(key, "fr");
-        UHC.getInstance().getLogger().info(format(message, args));
     }
 
     private static String format(String text, Object... args) {
