@@ -1,5 +1,6 @@
 package fr.bgoodes.uhc.utils;
 
+import fr.bgoodes.uhc.UHC;
 import fr.bgoodes.uhc.files.lang.LangManager;
 import org.bukkit.entity.Player;
 
@@ -31,6 +32,6 @@ public class TextUtils {
     }
 
     private static String getLangCodeForPlayer(Player player) {
-        return "fr";
+        return UHC.getServerConfig().DEFAULT_LANGUAGE_KEY.getValue();
     }
 }
