@@ -8,14 +8,16 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The LangManager class is responsible for managing language configurations and translations.
+ */
 public class LangManager {
     private final Map<String, YamlConfiguration> languages = new HashMap<>();
 
     public void loadLanguages() {
         File langFolder = new File(UHC.getInstance().getDataFolder(), "lang");
-        if (!langFolder.exists() || !langFolder.isDirectory()) {
+        if (!langFolder.exists() || !langFolder.isDirectory())
             throw new IllegalStateException("Language folder does not exist or is not a directory.");
-        }
 
         File[] langFiles = langFolder.listFiles((dir, name) -> name.endsWith(".yml"));
         if (langFiles == null)
@@ -37,13 +39,11 @@ public class LangManager {
     public String getTranslation(String key, String langCode) {
         YamlConfiguration langConfig = languages.get(langCode);
 
-        if (langConfig == null) {
-            langConfig = languages.get("fr");
-        }
+        if (langConfig == null)
+            langConfig = languages.get("fr"); // DEFAULT LANGUAGE (server-config.yml)
 
-        if (langConfig == null) {
+        if (langConfig == null)
             throw new IllegalStateException("Default language not found, check the server-config.yml.");
-        }
 
         String translation = langConfig.getString(key);
 

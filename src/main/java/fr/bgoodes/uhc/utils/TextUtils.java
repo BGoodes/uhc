@@ -1,11 +1,13 @@
 package fr.bgoodes.uhc.utils;
 
-import fr.bgoodes.uhc.UHC;
 import fr.bgoodes.uhc.files.lang.LangManager;
 import org.bukkit.entity.Player;
 
 import java.text.MessageFormat;
 
+/**
+ * The TextUtils class provides utility methods for handling text and language-related tasks.
+ */
 public class TextUtils {
 
     private static final LangManager langManager = new LangManager();

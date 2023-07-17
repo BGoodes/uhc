@@ -5,6 +5,9 @@ import fr.bgoodes.uhc.UHC;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The LogUtils class provides utility methods for logging messages.
+ */
 public class LogUtils {
 
     private static final Logger LOGGER = UHC.getInstance().getLogger();
