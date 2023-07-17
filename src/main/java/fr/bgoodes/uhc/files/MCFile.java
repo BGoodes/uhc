@@ -16,8 +16,6 @@ import java.util.Properties;
 /**
  * Abstract class representing a file used by the UHC plugin.
  * This class serves as a base for different types of files, such as YAML and properties files.
- *
- * @author B. Goodes
  */
 public class MCFile {
 

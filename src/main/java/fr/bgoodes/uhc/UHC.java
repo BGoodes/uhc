@@ -1,18 +1,17 @@
 package fr.bgoodes.uhc;
 
-import fr.bgoodes.uhc.files.MCFile;
+import fr.bgoodes.uhc.files.FileHandler;
 import fr.bgoodes.uhc.files.config.ServerConfig;
 import fr.bgoodes.uhc.files.config.services.ConfigService;
 import fr.bgoodes.uhc.files.config.services.YMLConfigService;
 import fr.bgoodes.uhc.game.GameManager;
-import fr.bgoodes.uhc.utils.LogUtils;
+import fr.bgoodes.uhc.listeners.ListenerManager;
 import fr.bgoodes.uhc.utils.TextUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.IllegalPluginAccessException;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Main class for the UHC plugin.
@@ -24,40 +23,55 @@ import java.util.List;
 public final class UHC extends JavaPlugin {
 
     private static UHC instance;
-    private static ServerConfig serverConfig;
     private static GameManager gameManager;
+    private static FileHandler fileHandler;
+    private static ServerConfig serverConfig;
 
+    /**
+     * This method is called when the plugin is enabled.
+     * It initializes the file handler, server configuration, and game manager.
+     */
     @Override
     public void onEnable() {
         instance = this;
 
+        // Initialize file handler and generate defaults files
         try {
-            generateDefaultFiles();
+            fileHandler = new FileHandler();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Bukkit.getLogger().severe("Failed to initialize files: " + e.getMessage());
+            throw new IllegalPluginAccessException("Failed to initialize files");
         }
 
-        ConfigService configService = new YMLConfigService(new File(getDataFolder(), "server-config.yml"));
+        // Initialize server configuration
+        ConfigService configService = new YMLConfigService(fileHandler.serverConfig.getFile());
         serverConfig = new ServerConfig(configService);
 
-        TextUtils.loadLanguages();
-
-        gameManager = new GameManager();
-    }
-
-    private void generateDefaultFiles() throws IOException {
-        List<String> defaultFiles = Arrays.asList(
-                "server-config.yml",
-                "lang/fr.yml"
-        );
-
-        for (String filename : defaultFiles) {
-            String path = filename.contains("/") ? filename.substring(0, filename.lastIndexOf('/')) : "";
-            String fileName = filename.contains("/") ? filename.substring(filename.lastIndexOf('/') + 1) : filename;
-            new MCFile(fileName, path);
+        // Load language file
+        try {
+            TextUtils.loadLanguages();
+        } catch (IOException e) {
+            Bukkit.getLogger().severe("Failed to load languages: " + e.getMessage());
+            throw new IllegalPluginAccessException("Failed to load languages");
         }
+
+
+        // Initialize game manager
+        gameManager = new GameManager();
+
+        new ListenerManager().registerListeners(this);
+
+        // Display startup message
+        Bukkit.getLogger().info("===============================");
+        Bukkit.getLogger().info("  UHC Plugin");
+        Bukkit.getLogger().info("  Version: 1.0-SNAPSHOT");
+        Bukkit.getLogger().info("  Developer: B. Goodes");
+        Bukkit.getLogger().info("===============================");
     }
 
+    /**
+     * This method is called when the plugin is disabled.
+     */
     @Override
     public void onDisable() {
     }
@@ -66,10 +80,15 @@ public final class UHC extends JavaPlugin {
         return instance;
     }
 
-    public static ServerConfig getServerConfig() {
-        return serverConfig;
-    }
     public static GameManager getGameManager() {
         return gameManager;
+    }
+
+    public static FileHandler getFileHandler() {
+        return fileHandler;
+    }
+
+    public static ServerConfig getServerConfig() {
+        return serverConfig;
     }
 }
