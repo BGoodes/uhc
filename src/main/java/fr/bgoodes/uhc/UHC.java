@@ -1,7 +1,10 @@
 package fr.bgoodes.uhc;
 
 import fr.bgoodes.uhc.files.MCFile;
+import fr.bgoodes.uhc.files.config.ServerConfig;
+import fr.bgoodes.uhc.files.config.services.YMLConfigService;
 import fr.bgoodes.uhc.game.GameManager;
+import fr.bgoodes.uhc.utils.LogUtils;
 import fr.bgoodes.uhc.utils.TextUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,6 +38,16 @@ public final class UHC extends JavaPlugin {
         TextUtils.loadLanguages();
 
         gameManager = new GameManager();
+
+        try {
+            ServerConfig serverConfig = new ServerConfig(new YMLConfigService(new MCFile("server-config.yml").getFile()));
+            LogUtils.info("Default language : " + serverConfig.default_language_key.getValue());
+            LogUtils.info("Option 1 : " + serverConfig.option1.getValue());
+            LogUtils.info("Option 2 : " + serverConfig.option2.getValue());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void generateDefaultFiles() throws IOException {
