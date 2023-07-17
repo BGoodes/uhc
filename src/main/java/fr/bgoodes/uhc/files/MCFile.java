@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.Properties;
-import java.util.logging.Level;
 
 /**
  * Abstract class representing a file used by the UHC plugin.
@@ -44,9 +43,8 @@ public class MCFile {
     public MCFile(String fileName, String path) throws IOException {
         this.file = new File(UHC.getInstance().getDataFolder().getPath() + (path.isEmpty() ? "" : File.separator + path), fileName);
 
-        if (!file.exists()) {
+        if (!file.exists())
             createFile(fileName);
-        }
     }
 
     public File getFile() {
@@ -57,11 +55,10 @@ public class MCFile {
         LogUtils.info("The file " + fileName + " does not exist. Creating it now.");
         FileUtils.copy(UHC.getInstance().getResource(fileName), file);
 
-        if (!file.exists()) {
+        if (!file.exists())
             throw new IOException("The file " + fileName + " could not be created.");
-        } else {
+        else
             LogUtils.info("The file " + fileName + " was successfully created.");
-        }
     }
 
     /**
