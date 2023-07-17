@@ -1,6 +1,7 @@
 package fr.bgoodes.uhc.files.lang;
 
 import fr.bgoodes.uhc.UHC;
+import fr.bgoodes.uhc.utils.LogUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -25,9 +26,9 @@ public class LangManager {
             try {
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
                 languages.put(key, config);
-                UHC.getInstance().getLogger().info("Loaded language: " + key);
+                LogUtils.info("Loaded language: " + key);
             } catch (Exception e) {
-                UHC.getInstance().getLogger().severe("Error loading language file: " + file.getName());
+                LogUtils.severe("Error loading language file: " + file.getName());
                 e.printStackTrace();
             }
         }

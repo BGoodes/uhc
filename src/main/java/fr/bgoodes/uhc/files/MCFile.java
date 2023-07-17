@@ -2,6 +2,7 @@ package fr.bgoodes.uhc.files;
 
 import fr.bgoodes.uhc.UHC;
 import fr.bgoodes.uhc.utils.FileUtils;
+import fr.bgoodes.uhc.utils.LogUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -53,13 +54,13 @@ public class MCFile {
     }
 
     private void createFile(String fileName) throws IOException {
-        UHC.getInstance().getLogger().info("The file " + fileName + " does not exist. Creating it now.");
+        LogUtils.info("The file " + fileName + " does not exist. Creating it now.");
         FileUtils.copy(UHC.getInstance().getResource(fileName), file);
 
         if (!file.exists()) {
             throw new IOException("The file " + fileName + " could not be created.");
         } else {
-            UHC.getInstance().getLogger().info("The file " + fileName + " was successfully created.");
+            LogUtils.info("The file " + fileName + " was successfully created.");
         }
     }
 
@@ -105,7 +106,7 @@ public class MCFile {
             try (InputStream in = Files.newInputStream(file.toPath())) {
                 properties.load(in);
             } catch (IOException e) {
-                UHC.getInstance().getLogger().log(Level.SEVERE, "Could not load properties from file " + file.getName(), e);
+                LogUtils.severe("Could not load properties from file " + file.getName(), e);
             }
         }
 
@@ -125,7 +126,7 @@ public class MCFile {
             try (OutputStream out = Files.newOutputStream(file.toPath())) {
                 properties.store(out, null);
             } catch (IOException e) {
-                UHC.getInstance().getLogger().log(Level.SEVERE, "Could not save properties to file " + file.getName(), e);
+                LogUtils.severe("Could not save properties to file " + file.getName(), e);
             }
         }
     }
