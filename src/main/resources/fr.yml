@@ -2,7 +2,7 @@ prefix: "§5§lUHC §8»"
 error: "§6Erreur §8»"
 
 broadcast:
-  player-join: "~prefix §7{0} §aa rejoint la partie !"
-  spectator-join: "~prefix §7{0} §aa rejoint la partie ! §b(Spectateur)"
-  player-leave: "~prefix §7{0} §ca quitté la partie !"
-  spectator-leave: "~prefix §7{0} §ca quitté la partie ! §b(Spectateur)"
+  bc-player-join: "~prefix §7{0} §aa rejoint la partie !"
+  bc-spectator-join: "~prefix §7{0} §aa rejoint la partie ! §b(Spectateur)"
+  bc-player-leave: "~prefix §7{0} §ca quitté la partie !"
+  bc-spectator-leave: "~prefix §7{0} §ca quitté la partie ! §b(Spectateur)"
