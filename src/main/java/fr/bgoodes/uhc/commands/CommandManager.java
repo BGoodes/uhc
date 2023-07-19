@@ -28,6 +28,6 @@ public class CommandManager {
     }
 
     public void initializeCommands() {
-        registerCommand(new HostCommand(), "uhc", "h");
+        registerCommand(new HostCommand(), "host", "h");
     }
 }

@@ -4,3 +4,11 @@
 #########################################################
 
 default-language-key: fr
+
+lobby:
+  spawn-location:
+    world-name: world
+    x: 0
+    y: 100
+    z: 0
+  default-gamemode: "ADVENTURE"
