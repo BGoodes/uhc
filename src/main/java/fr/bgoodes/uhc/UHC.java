@@ -47,7 +47,7 @@ public final class UHC extends JavaPlugin {
         ConfigService configService = new YMLConfigService(fileHandler.serverConfig.getFile());
         serverConfig = new ServerConfig(configService);
 
-        // Load language file
+        // Load language files
         try {
             TextUtils.loadLanguages();
         } catch (IOException e) {
