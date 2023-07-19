@@ -9,7 +9,6 @@ import fr.bgoodes.uhc.game.players.PlayerManager;
 import fr.bgoodes.uhc.game.scenarios.ScenarioManager;
 import fr.bgoodes.uhc.game.tasks.TaskManager;
 import fr.bgoodes.uhc.game.worlds.WorldManager;
-import fr.bgoodes.uhc.utils.LogUtils;
 
 /**
  * This class is responsible for managing the game.

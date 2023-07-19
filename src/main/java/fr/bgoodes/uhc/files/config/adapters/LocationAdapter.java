@@ -5,6 +5,11 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 
+/**
+ * An implementation of {@link TypeAdapter} for handling Bukkit's Location objects.
+ * This adapter can deserialize a location from a string or a ConfigurationSection,
+ * and can serialize a location to a string.
+ */
 public class LocationAdapter implements TypeAdapter<Location> {
 
     @Override

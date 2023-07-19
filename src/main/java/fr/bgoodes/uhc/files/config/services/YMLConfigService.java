@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A YAML-based implementation of the ConfigService interface. This class reads
- * configuration options from a YAML file and writes them back to the same file. It
- * also handles registration of options.
+ * A YAML-based implementation of the {@link ConfigService} interface. This class
+ * reads configuration options from a YAML file and writes them back to the same file.
+ * It also handles the registration of options.
  */
 public class YMLConfigService implements ConfigService {
     private final File file;

@@ -1,4 +1,11 @@
 package fr.bgoodes.uhc.files.config.adapters;
+
+/**
+ * An implementation of {@link TypeAdapter} for handling Java enum types.
+ * This adapter deserializes an enum from a string and serializes an enum to a string.
+ *
+ * @param <T> The enum type
+ */
 public class EnumAdapter<T extends Enum<T>> implements TypeAdapter<T> {
     private final Class<T> enumType;
 
