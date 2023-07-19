@@ -7,8 +7,12 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 
 /**
- * The ServerConfig class encapsulates the initial configuration options required for plugin initialization.
- * These options are modifiable only within the server-config.yml file by default.
+ * The ServerConfig class encapsulates the initial configuration options required
+ * for the plugin initialization. These options are modifiable only within the
+ * server-config.yml file by default.
+ * The options are represented as instances of the {@link Option} class. They are
+ * registered with a {@link ConfigService} that handles reading the actual values
+ * from a configuration source.
  */
 public class ServerConfig {
 
@@ -16,6 +20,13 @@ public class ServerConfig {
     public final Option<Location> spawnLocation;
     public final Option<GameMode> defaultGamemode;
 
+    /**
+     * Constructs a new ServerConfig object.
+     *
+     * @param configService  the configuration service used to register and retrieve
+     *                       the server options. This is typically an instance that
+     *                       reads the configuration from a file or another external source.
+     */
     public ServerConfig(ConfigService configService) {
         this.defaultLanguageKey  = configService.registerOption("default-language-key", String.class);
         this.spawnLocation = configService.registerOption("lobby.spawn-location", new LocationAdapter());

@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 
 /**
  * The LogUtils class provides utility methods for logging messages.
+ *
+ * @author B. Goodes
  */
 public class LogUtils {
 
