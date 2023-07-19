@@ -23,6 +23,8 @@ public class GameManager {
         private final ScenarioManager scenarioManager;
         private final TaskManager taskManager;
 
+        private GameState state;
+
         // Configuration
         private final GameConfig configuration;
 
@@ -33,10 +35,13 @@ public class GameManager {
                 this.scenarioManager = new ScenarioManager();
                 this.taskManager = new TaskManager();
 
+                this.state = GameState.WAITING;
+
                 ConfigService configService = new YMLConfigService(UHC.getFileHandler().defaultGameConfig.getFile());
                 this.configuration = new GameConfig(configService);
         }
 
+        // Getters
         public PlayerManager getPlayerManager() {
                 return this.playerManager;
         }
@@ -59,5 +64,18 @@ public class GameManager {
 
         public GameConfig getConfiguration() {
                 return this.configuration;
+        }
+
+        // Game state
+        public GameState getState() {
+                return state;
+        }
+
+        public void setState(GameState state) {
+                this.state = state;
+        }
+
+        public Boolean isStart() {
+                return this.state == GameState.PLAYING || this.state == GameState.ENDING;
         }
 }
