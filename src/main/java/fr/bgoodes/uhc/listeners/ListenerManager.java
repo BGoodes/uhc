@@ -1,16 +1,20 @@
 package fr.bgoodes.uhc.listeners;
 
 import fr.bgoodes.uhc.UHC;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
 public class ListenerManager {
+    private final UHC plugin;
 
-    public void registerListeners(UHC pl) {
-        registerListener(new PlayerConnexionListener(), pl);
+    public ListenerManager(UHC plugin) {
+        this.plugin = plugin;
     }
 
-    private void registerListener(Listener listener, UHC plugin) {
-        Bukkit.getPluginManager().registerEvents(listener, plugin);
+    public void registerListener(Listener listener) {
+        plugin.getServer().getPluginManager().registerEvents(listener, plugin);
+    }
+
+    public void initializeListeners() {
+        registerListener(new PlayerConnexionListener());
     }
 }

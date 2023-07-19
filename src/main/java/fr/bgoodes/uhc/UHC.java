@@ -1,5 +1,6 @@
 package fr.bgoodes.uhc;
 
+import fr.bgoodes.uhc.commands.CommandManager;
 import fr.bgoodes.uhc.files.FileHandler;
 import fr.bgoodes.uhc.files.config.ServerConfig;
 import fr.bgoodes.uhc.files.config.services.ConfigService;
@@ -59,7 +60,8 @@ public final class UHC extends JavaPlugin {
         // Initialize game manager
         gameManager = new GameManager();
 
-        new ListenerManager().registerListeners(this);
+        new ListenerManager(this).initializeListeners();
+        new CommandManager(this).initializeCommands();
 
         // Display startup message
         Bukkit.getLogger().info("===============================");
