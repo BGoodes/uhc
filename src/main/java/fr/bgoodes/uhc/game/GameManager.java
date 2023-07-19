@@ -24,7 +24,7 @@ public class GameManager {
         private final TaskManager taskManager;
 
         // Configuration
-        private GameConfig configuration;
+        private final GameConfig configuration;
 
         public GameManager() {
                 this.playerManager = new PlayerManager();

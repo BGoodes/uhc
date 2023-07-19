@@ -4,3 +4,8 @@ main: fr.bgoodes.uhc.UHC
 api-version: '1.20'
 authors: [B. Goodes]
 description: Plugin permettant de créer et de gérer des parties d'UHC.
+commands:
+  host:
+    description: Commandes pour les organisateurs de l'UHC.
+  h:
+    description: Commandes pour les organisateurs de l'UHC.

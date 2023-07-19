@@ -20,6 +20,10 @@ public class LogUtils {
         LOGGER.info(message);
     }
 
+    public static void warning(String message) {
+        LOGGER.warning(message);
+    }
+
     public static void severe(String message) {
         LOGGER.severe(message);
     }
