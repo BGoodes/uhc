@@ -59,7 +59,7 @@ public class LangManager {
         YamlConfiguration langConfig = languages.get(langCode);
 
         if (langConfig == null)
-            langConfig = languages.get(UHC.getServerConfig().defaultLanguageKey.getValue());
+            langConfig = languages.get(UHC.getServerConfig().defaultLanguageCode.getValue());
 
         if (langConfig == null)
             throw new IllegalStateException("Default language not found, check the server-config.yml.");

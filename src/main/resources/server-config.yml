@@ -3,7 +3,7 @@
 #               Développeur : B. Goodes                 #
 #########################################################
 
-default-language-key: fr
+default-language-code: fr
 
 lobby:
   spawn-location:

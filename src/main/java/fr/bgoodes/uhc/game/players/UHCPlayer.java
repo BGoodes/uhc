@@ -1,5 +1,6 @@
 package fr.bgoodes.uhc.game.players;
 
+import fr.bgoodes.uhc.UHC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -11,10 +12,14 @@ public class UHCPlayer {
     private String name;
     private PlayerState state;
 
+    private String langCode;
+
     public UHCPlayer(Player player, PlayerState state) {
         this.uuid = player.getUniqueId();
         this.name = player.getName();
         this.state = state;
+
+        this.langCode = UHC.getServerConfig().defaultLanguageCode.getValue();
     }
 
     public UUID getID() {
@@ -51,5 +56,9 @@ public class UHCPlayer {
 
     public Boolean isSpectator() {
         return this.state == PlayerState.SPECTATE;
+    }
+
+    public String getLangCode() {
+        return langCode;
     }
 }
