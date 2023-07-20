@@ -1,32 +1,48 @@
 package fr.bgoodes.uhc.game.tasks;
 
+import fr.bgoodes.uhc.game.GameState;
+import fr.bgoodes.uhc.game.tasks.core.*;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class TaskManager {
 
-    private UHCTask mainTask;
+    private final Map<GameState, UHCTaskProvider<?>> coreTasks;
     private final List<UHCTask> subTasks;
+    private UHCTask currentCoreTask;
 
     public TaskManager() {
+        this.coreTasks = new HashMap<>();
         this.subTasks = new ArrayList<>();
+
+        // Register main tasks
+        registerMainTask(GameState.WAITING, WaitingTask::new);
+        registerMainTask(GameState.STARTING, StartingTask::new);
+        registerMainTask(GameState.LOADING, LoadingTask::new);
+        registerMainTask(GameState.PLAYING, PlayingTask::new);
+        registerMainTask(GameState.ENDING, EndingTask::new);
     }
 
-    public void setMainTask(UHCTask mainTask) {
-        if (this.mainTask != null && this.mainTask.isRunning())
-            this.mainTask.stop();
-        this.mainTask = mainTask;
+    private <T extends UHCTask> void registerMainTask(GameState state, UHCTaskProvider<T> provider) {
+        this.coreTasks.put(state, provider);
     }
 
-    public void runMainTask() {
-        if (this.mainTask != null && !this.mainTask.isRunning())
-            this.mainTask.start();
+    public void enterState(GameState state) {
+        UHCTaskProvider<?> provider = coreTasks.get(state);
+        if (currentCoreTask != null && currentCoreTask.isRunning())
+            currentCoreTask.stop();
+        if (provider != null) {
+            currentCoreTask = provider.provide();
+            currentCoreTask.start();
+        }
     }
 
-    public void stopMainTask() {
-        if (this.mainTask != null && this.mainTask.isRunning())
-            this.mainTask.stop();
+    public UHCTask getCoreTask() {
+        return currentCoreTask;
     }
 
     public void addSubTask(UHCTask task) {
@@ -39,7 +55,11 @@ public class TaskManager {
         this.subTasks.remove(task);
     }
 
-    public void stopAllSubTasks() {
+    public void stopAllTasks() {
+        if (currentCoreTask != null && currentCoreTask.isRunning()) {
+            currentCoreTask.stop();
+            currentCoreTask = null;
+        }
         for (UHCTask task : subTasks)
             task.stop();
         subTasks.clear();

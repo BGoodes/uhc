@@ -37,7 +37,7 @@ public class GameManager {
                 this.scenarioManager = new ScenarioManager();
                 this.taskManager = new TaskManager();
 
-                this.state = GameState.WAITING;
+                this.enterState(GameState.WAITING);
 
                 ConfigService configService = new YMLConfigService(UHC.getFileHandler().defaultGameConfig.getFile());
                 this.configuration = new GameConfig(configService);
@@ -73,8 +73,9 @@ public class GameManager {
                 return state;
         }
 
-        public void setState(GameState state) {
+        public void enterState(GameState state) {
                 this.state = state;
+                this.taskManager.enterState(state);
         }
 
         public Boolean isStart() {
