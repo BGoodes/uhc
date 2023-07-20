@@ -16,7 +16,9 @@ public class PlayerManager {
         this.players = new HashMap<>();
     }
 
+    // --------------------------------------------
     // Get multiple players
+
     public List<UHCPlayer> getPlayers() {
         return new ArrayList<>(players.values());
     }
@@ -37,6 +39,9 @@ public class PlayerManager {
         return players.values().stream().filter(UHCPlayer::isSpectator).collect(Collectors.toList());
     }
 
+    // --------------------------------------------
+    // Get a specific player
+
     public UHCPlayer getUHCPlayer(Player player) {
         return getUHCPlayer(player.getUniqueId());
     }
@@ -52,6 +57,9 @@ public class PlayerManager {
         return players.containsKey(uuid);
     }
 
+    // --------------------------------------------
+    // Add and remove players
+
     public void addPlayer(UHCPlayer uhcPlayer) {
         players.put(uhcPlayer.getID(), uhcPlayer);
     }
@@ -60,6 +68,8 @@ public class PlayerManager {
         players.remove(player.getUniqueId());
     }
 
+    // --------------------------------------------
+    // Set player state
     public void setPlayerWait(UHCPlayer uhcPlayer) {
         uhcPlayer.setState(PlayerState.ALIVE);
 

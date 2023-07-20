@@ -16,7 +16,7 @@ import org.bukkit.Location;
  */
 public class ServerConfig {
 
-    public final Option<String> defaultLanguageKey;
+    public final Option<String> defaultLanguageCode;
     public final Option<Location> spawnLocation;
     public final Option<GameMode> defaultGamemode;
 
@@ -28,7 +28,7 @@ public class ServerConfig {
      *                       reads the configuration from a file or another external source.
      */
     public ServerConfig(ConfigService configService) {
-        this.defaultLanguageKey  = configService.registerOption("default-language-key", String.class);
+        this.defaultLanguageCode  = configService.registerOption("default-language-key", String.class);
         this.spawnLocation = configService.registerOption("lobby.spawn-location", new LocationAdapter());
         this.defaultGamemode = configService.registerOption("lobby.default-gamemode", new EnumAdapter<>(GameMode.class));
     }

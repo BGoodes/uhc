@@ -23,6 +23,8 @@ public class PlayerConnexionListener implements Listener {
         Player player = event.getPlayer();
         UHCPlayer uhcPlayer;
 
+        event.joinMessage(null);
+
         if (playerManager.isUHCPlayer(player)) {
             uhcPlayer = playerManager.getUHCPlayer(player);
         } else {
@@ -34,7 +36,7 @@ public class PlayerConnexionListener implements Listener {
         uhcPlayer.refreshName();
 
         if (uhcPlayer.isSpectator()) {
-            event.joinMessage(TextUtils.getText(TranslationKey.BC_SPECTATOR_JOIN, "fr", player.getName()));
+            gameManager.broadcast(TranslationKey.BC_SPECTATOR_JOIN, player.getName());
             playerManager.setPlayerSpectate(uhcPlayer);
             return;
         }
@@ -42,6 +44,6 @@ public class PlayerConnexionListener implements Listener {
         if (gameManager.getState() == GameState.WAITING)
             playerManager.setPlayerWait(uhcPlayer);
 
-        event.joinMessage(TextUtils.getText(TranslationKey.BC_PLAYER_JOIN, "fr", player.getName()));
+        gameManager.broadcast(TranslationKey.BC_PLAYER_JOIN, player.getName());
     }
 }

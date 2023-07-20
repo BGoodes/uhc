@@ -1,6 +1,7 @@
 package fr.bgoodes.uhc.utils;
 
 import fr.bgoodes.uhc.UHC;
+import net.kyori.adventure.text.Component;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
