@@ -7,17 +7,16 @@ import fr.bgoodes.uhc.game.GameState;
 import fr.bgoodes.uhc.game.players.PlayerManager;
 import fr.bgoodes.uhc.game.players.PlayerState;
 import fr.bgoodes.uhc.game.players.UHCPlayer;
-import fr.bgoodes.uhc.utils.TextUtils;
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerConnexionListener implements Listener {
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void playerJoinEvent(PlayerJoinEvent event) {
         GameManager gameManager = UHC.getGameManager();
         PlayerManager playerManager = gameManager.getPlayerManager();
         Player player = event.getPlayer();
@@ -45,5 +44,24 @@ public class PlayerConnexionListener implements Listener {
             playerManager.setPlayerWait(uhcPlayer);
 
         gameManager.broadcast(TranslationKey.BC_PLAYER_JOIN, player.getName());
+    }
+
+    @EventHandler
+    public void playerQuitEvent(PlayerQuitEvent event) {
+        GameManager gameManager = UHC.getGameManager();
+        PlayerManager playerManager = gameManager.getPlayerManager();
+        Player player = event.getPlayer();
+
+        event.quitMessage(null);
+
+        if (!playerManager.isUHCPlayer(player))
+            return;
+
+        UHCPlayer uhcPlayer = playerManager.getUHCPlayer(player);
+
+        if (uhcPlayer.isSpectator())
+            gameManager.broadcast(TranslationKey.BC_SPECTATOR_LEAVE, player.getName());
+        else
+            gameManager.broadcast(TranslationKey.BC_PLAYER_LEAVE, player.getName());
     }
 }
