@@ -1,6 +1,5 @@
 package fr.bgoodes.uhc.game.tasks.core;
 
-import fr.bgoodes.uhc.UHC;
 import fr.bgoodes.uhc.game.tasks.UHCTask;
 
 public class WaitingTask extends UHCTask {
