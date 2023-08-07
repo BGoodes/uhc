@@ -22,9 +22,9 @@ public class TextUtils {
         langManager.loadLanguages();
     }
 
-    public static Component getText(TranslationKey key, String langCode, Object... args) {
-        String message = format(langManager.getTranslation(key, langCode));
-        return Component.text(message);
+    public static Component getComponent(TranslationKey key, String langCode, Object... args) {
+        String message = format(langManager.getTranslation(key, langCode), args);
+        return Component.text(message.replace("~prefix", "§5§lUHC §8»"));
     }
 
     private static String format(String text, Object... args) {

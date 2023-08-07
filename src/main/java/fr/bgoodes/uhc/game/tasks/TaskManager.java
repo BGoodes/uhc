@@ -33,7 +33,7 @@ public class TaskManager {
 
     public void enterState(GameState state) {
         UHCTaskProvider<?> provider = coreTasks.get(state);
-        if (currentCoreTask != null && currentCoreTask.isRunning())
+        if (currentCoreTask != null)
             currentCoreTask.stop();
         if (provider != null) {
             currentCoreTask = provider.provide();
@@ -56,7 +56,7 @@ public class TaskManager {
     }
 
     public void stopAllTasks() {
-        if (currentCoreTask != null && currentCoreTask.isRunning()) {
+        if (currentCoreTask != null) {
             currentCoreTask.stop();
             currentCoreTask = null;
         }

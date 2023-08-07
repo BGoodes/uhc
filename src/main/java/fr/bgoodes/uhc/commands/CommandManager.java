@@ -18,7 +18,7 @@ public class CommandManager {
             PluginCommand pluginCommand = plugin.getCommand(name);
 
             if (pluginCommand == null) {
-                LogUtils.warning("Command "+ name + " not registered in the plugin.yml");
+                LogUtils.warning("Command '"+ name + "' not registered in the plugin.yml");
                 continue;
             }
 
