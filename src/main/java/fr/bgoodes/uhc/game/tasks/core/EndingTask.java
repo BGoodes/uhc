@@ -14,11 +14,6 @@ public class EndingTask extends UHCTask {
     }
 
     @Override
-    public boolean isRunning() {
-        return false;
-    }
-
-    @Override
     public void run() {
 
     }

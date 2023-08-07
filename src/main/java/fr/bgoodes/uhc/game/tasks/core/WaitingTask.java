@@ -15,11 +15,6 @@ public class WaitingTask extends UHCTask {
     }
 
     @Override
-    public boolean isRunning() {
-        return false;
-    }
-
-    @Override
     public void run() {
 
     }

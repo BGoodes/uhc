@@ -28,7 +28,7 @@ public class ServerConfig {
      *                       reads the configuration from a file or another external source.
      */
     public ServerConfig(ConfigService configService) {
-        this.defaultLanguageCode  = configService.registerOption("default-language-key", String.class);
+        this.defaultLanguageCode  = configService.registerOption("default-language-code", String.class);
         this.spawnLocation = configService.registerOption("lobby.spawn-location", new LocationAdapter());
         this.defaultGamemode = configService.registerOption("lobby.default-gamemode", new EnumAdapter<>(GameMode.class));
     }

@@ -15,11 +15,6 @@ public class PlayingTask extends UHCTask {
     }
 
     @Override
-    public boolean isRunning() {
-        return false;
-    }
-
-    @Override
     public void run() {
 
     }

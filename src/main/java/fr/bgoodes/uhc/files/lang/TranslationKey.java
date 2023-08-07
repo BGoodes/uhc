@@ -9,7 +9,11 @@ public enum TranslationKey {
     BC_PLAYER_JOIN("broadcast"),
     BC_SPECTATOR_JOIN("broadcast"),
     BC_PLAYER_LEAVE("broadcast"),
-    BC_SPECTATOR_LEAVE("broadcast");
+    BC_SPECTATOR_LEAVE("broadcast"),
+
+    BC_GAME_STARTING("broadcast.starting"),
+    BC_GAME_STARTED("broadcast.starting"),
+    BC_GAME_CANCELLED("broadcast.starting");
 
     private final String path;
 
