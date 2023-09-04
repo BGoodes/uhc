@@ -7,6 +7,7 @@ package fr.bgoodes.uhc.files.config.adapters;
  * @param <T> The enum type
  */
 public class EnumAdapter<T extends Enum<T>> implements TypeAdapter<T> {
+
     private final Class<T> enumType;
 
     public EnumAdapter(Class<T> enumType) {

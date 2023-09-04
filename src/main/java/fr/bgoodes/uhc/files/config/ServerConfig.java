@@ -29,7 +29,7 @@ public class ServerConfig {
      */
     public ServerConfig(ConfigService configService) {
         this.defaultLanguageCode  = configService.registerOption("default-language-code", String.class);
-        this.spawnLocation = configService.registerOption("lobby.spawn-location", new LocationAdapter());
+        this.spawnLocation = configService.registerOption("lobby.spawn-location", LocationAdapter.INSTANCE);
         this.defaultGamemode = configService.registerOption("lobby.default-gamemode", new EnumAdapter<>(GameMode.class));
     }
 }

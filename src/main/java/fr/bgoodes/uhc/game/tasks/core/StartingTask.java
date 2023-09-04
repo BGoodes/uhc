@@ -8,7 +8,10 @@ import fr.bgoodes.uhc.game.players.PlayerManager;
 import fr.bgoodes.uhc.game.players.UHCPlayer;
 import fr.bgoodes.uhc.game.tasks.UHCTask;
 import fr.bgoodes.uhc.utils.MCSound;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Sound;
+
+import java.time.Duration;
 
 public class StartingTask extends UHCTask {
 
@@ -19,6 +22,9 @@ public class StartingTask extends UHCTask {
     private final MCSound TIMER_SOUND = new MCSound(Sound.UI_BUTTON_CLICK, 0.6f);
     private final MCSound START_SOUND = new MCSound(Sound.BLOCK_NOTE_BLOCK_PLING, 0.6f);
     private final MCSound CANCEL_SOUND = new MCSound(Sound.BLOCK_NOTE_BLOCK_BASS, 1f);
+
+    private final Title.Times TITLE_TIMES = Title.Times.times(Duration.ofMillis(250), Duration.ofMillis(1000), Duration.ofMillis(0));
+    private final String[] TITLE_COLOR = {"§a", "§e", "§6", "§c", "§4"};
 
     public StartingTask() {
         this.gameManager = UHC.getGameManager();
@@ -38,12 +44,14 @@ public class StartingTask extends UHCTask {
             gameManager.enterState(GameState.LOADING);
 
         } else {
+
             setXp(countdown);
 
-            if (countdown == 10 || countdown == 20 || countdown == 30) {
-                gameManager.broadcast(TranslationKey.BC_GAME_STARTING, countdown);
-                gameManager.playSound(TIMER_SOUND);
-            }
+            if (countdown == 10 || countdown == 20 || countdown == 30)
+                gameManager.broadcast(TranslationKey.BC_GAME_STARTING, TIMER_SOUND, countdown);
+
+            if (countdown <= 5)
+                gameManager.title(TranslationKey.BC_GAME_STARTING_TITLE, TITLE_TIMES, START_SOUND, TITLE_COLOR[countdown - 1], countdown);
         }
 
         countdown--;
