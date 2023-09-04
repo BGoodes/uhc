@@ -15,6 +15,9 @@ import fr.bgoodes.uhc.utils.MCSound;
 import fr.bgoodes.uhc.utils.TextUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
+import org.jetbrains.annotations.NotNull;
+
+import java.time.Duration;
 
 /**
  * This class is responsible for managing the game.
@@ -86,22 +89,35 @@ public class GameManager {
         }
 
         public void broadcast(TranslationKey key, Object... args) {
-                for (UHCPlayer p : this.playerManager.getPlayers())
-                        p.getPlayer().sendMessage(TextUtils.getComponent(key, p.getLangCode(), args));
+                broadcast(key, null, args);
         }
 
-        public void title(TranslationKey titleKey, Object... args) {
-                this.title(titleKey, (TranslationKey) null, args);
+        public void broadcast(TranslationKey key, MCSound sound, Object... args) {
+                for (UHCPlayer p : this.playerManager.getPlayers()) {
+                        p.getPlayer().sendMessage(TextUtils.getComponent(key, p.getLangCode(), args));
+                        if (sound != null) sound.play(p.getPlayer());
+                }
         }
-        public void title(TranslationKey titleKey, TranslationKey subtitleKey, Object... args) {
+
+        public void title(TranslationKey titleKey, Title.Times times, Object... args) {
+                title(titleKey, null, times, (MCSound) null, args);
+        }
+
+        public void title(TranslationKey titleKey, Title.Times times, MCSound sound, Object... args) {
+                title(titleKey, null, times, sound, args);
+        }
+
+        public void title(TranslationKey titleKey, TranslationKey subtitleKey, Title.Times times, Object... args) {
+                title(titleKey, subtitleKey, times, (MCSound) null, args);
+        }
+
+        public void title(TranslationKey titleKey, TranslationKey subtitleKey, Title.Times times, MCSound sound, Object... args) {
                 for (UHCPlayer p : this.playerManager.getPlayers()) {
                         Component title = TextUtils.getComponent(titleKey, p.getLangCode(), args);
-                        Component subtitle;
+                        Component subtitle = subtitleKey != null ? TextUtils.getComponent(subtitleKey, p.getLangCode(), args) : Component.empty();
 
-                        if (subtitleKey != null) subtitle = TextUtils.getComponent(subtitleKey, p.getLangCode(), args);
-                        else subtitle = Component.empty();
-
-                        p.getPlayer().showTitle(Title.title(title, subtitle));
+                        p.getPlayer().showTitle(Title.title(title, subtitle, times));
+                        if (sound != null) sound.play(p.getPlayer());
                 }
         }
 

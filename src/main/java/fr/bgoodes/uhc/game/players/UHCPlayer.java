@@ -56,7 +56,7 @@ public class UHCPlayer {
 
     public Boolean isSpectator() {
         return this.state == PlayerState.SPECTATE;
-    }
+    }   
 
     public String getLangCode() {
         return langCode;

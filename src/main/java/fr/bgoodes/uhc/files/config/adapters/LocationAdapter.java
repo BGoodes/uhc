@@ -12,6 +12,8 @@ import org.bukkit.configuration.ConfigurationSection;
  */
 public class LocationAdapter implements TypeAdapter<Location> {
 
+    public static final LocationAdapter INSTANCE = new LocationAdapter();
+
     @Override
     public Location deserialize(Object obj) {
         if (obj instanceof String) {

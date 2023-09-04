@@ -9,5 +9,6 @@ broadcast:
 
   starting:
     bc-game-starting: "~prefix §7La partie commence dans §a{0} §7secondes !"
-    bc-game-started: "~prefix §7La partie est lancé, §aBonne chance §7!"
+    bc-game-starting-title: "{0}{1}"
     bc-game-cancelled: "~prefix §cLa partie a été annulée."
+    bc-game-started: "~prefix §7La partie est lancé, §aBonne chance §7!"

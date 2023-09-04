@@ -14,7 +14,7 @@ public class GameConfig {
     public final Option<String> gameName;
 
     /**
-     * Constructs a new GameConfig object.
+     * Constructs a new GameConfig object with default values.
      *
      * @param configService  the configuration service used to register and retrieve
      *                       the game options. This is typically an instance that

@@ -12,6 +12,7 @@ public enum TranslationKey {
     BC_SPECTATOR_LEAVE("broadcast"),
 
     BC_GAME_STARTING("broadcast.starting"),
+    BC_GAME_STARTING_TITLE("broadcast.starting"),
     BC_GAME_STARTED("broadcast.starting"),
     BC_GAME_CANCELLED("broadcast.starting");
 
