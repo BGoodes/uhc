@@ -2,13 +2,13 @@ prefix: "§5§lUHC §8»"
 error: "§6Erreur §8»"
 
 broadcast:
-  bc-player-join: "~prefix §7{0} §aa rejoint la partie !"
-  bc-spectator-join: "~prefix §7{0} §aa rejoint la partie ! §b(Spectateur)"
-  bc-player-leave: "~prefix §7{0} §ca quitté la partie !"
-  bc-spectator-leave: "~prefix §7{0} §ca quitté la partie ! §b(Spectateur)"
+  bc-player-join: "[link:prefix] §7{0} §aa rejoint la partie !"
+  bc-spectator-join: "[link:prefix] §7{0} §aa rejoint la partie ! §b(Spectateur)"
+  bc-player-leave: "[link:prefix] §7{0} §ca quitté la partie !"
+  bc-spectator-leave: "[link:prefix] §7{0} §ca quitté la partie ! §b(Spectateur)"
 
   starting:
-    bc-game-starting: "~prefix §7La partie commence dans §a{0} §7secondes !"
+    bc-game-starting: "[link:prefix] §7La partie commence dans §a{0} §7secondes !"
     bc-game-starting-title: "{0}{1}"
-    bc-game-cancelled: "~prefix §cLa partie a été annulée."
-    bc-game-started: "~prefix §7La partie est lancé, §aBonne chance §7!"
+    bc-game-cancelled: "[link:prefix] §cLa partie a été annulée."
+    bc-game-started: "[link:prefix] §7La partie est lancé, §aBonne chance §7!"
