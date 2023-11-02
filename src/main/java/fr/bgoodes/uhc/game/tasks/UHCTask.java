@@ -1,10 +1,8 @@
 package fr.bgoodes.uhc.game.tasks;
 
-public interface UHCTask extends Runnable {
+import org.bukkit.scheduler.BukkitRunnable;
 
-    void start();
-
-    void stop();
-
-    boolean isRunning();
+public abstract class UHCTask extends BukkitRunnable {
+    public abstract void start();
+    public abstract void stop();
 }
