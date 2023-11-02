@@ -69,7 +69,6 @@ public class LangManager {
                 s = s.substring(1, s.length() - 1);
 
                 // TODO: create a class or a method for this
-                System.out.println(s);
                 if (s.startsWith("link:")) {
                     String r = config.getString(s.substring(5));
                     if (r != null) value = value.replace("[" + s + "]", r);

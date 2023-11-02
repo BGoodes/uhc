@@ -8,6 +8,7 @@ import fr.bgoodes.uhc.files.lang.TranslationKey;
 import fr.bgoodes.uhc.game.gamemode.UHCModeManager;
 import fr.bgoodes.uhc.game.players.PlayerManager;
 import fr.bgoodes.uhc.game.players.UHCPlayer;
+import fr.bgoodes.uhc.game.players.teams.TeamManager;
 import fr.bgoodes.uhc.game.scenarios.ScenarioManager;
 import fr.bgoodes.uhc.game.tasks.TaskManager;
 import fr.bgoodes.uhc.game.worlds.WorldManager;
@@ -26,6 +27,8 @@ import java.time.Duration;
 public class GameManager {
         // Managers
         private final PlayerManager playerManager;
+
+        private final TeamManager teamManager;
         private final WorldManager worldManager;
         private final UHCModeManager uhcModeManager;
         private final ScenarioManager scenarioManager;
@@ -38,6 +41,7 @@ public class GameManager {
 
         public GameManager() {
                 this.playerManager = new PlayerManager();
+                this.teamManager = new TeamManager();
                 this.worldManager = new WorldManager();
                 this.uhcModeManager = new UHCModeManager();
                 this.scenarioManager = new ScenarioManager();
