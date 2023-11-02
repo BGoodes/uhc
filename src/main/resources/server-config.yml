@@ -5,7 +5,7 @@
 
 default-language-code: fr
 
-lobby:
+lobby-settings:
   spawn-location:
     world-name: world
     x: 0

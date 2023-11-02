@@ -12,6 +12,8 @@ import fr.bgoodes.uhc.files.config.services.ConfigService;
 public class GameConfig {
 
     public final Option<String> gameName;
+    public final Option<Integer> teamSize;
+    public final Option<Integer> teamCount;
 
     /**
      * Constructs a new GameConfig object with default values.
@@ -22,5 +24,8 @@ public class GameConfig {
      */
     public GameConfig(ConfigService configService) {
         this.gameName = configService.registerOption("game-name", String.class);
+
+        this.teamSize = configService.registerOption("team-settings.team-size", Integer.class);
+        this.teamCount = configService.registerOption("team-settings.team-count", Integer.class);
     }
 }

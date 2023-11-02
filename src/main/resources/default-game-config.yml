@@ -1,1 +1,5 @@
 game-name: "UHC"
+
+teams-settings:
+  team-size: 1
+  team-count: 4
