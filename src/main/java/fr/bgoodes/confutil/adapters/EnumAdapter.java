@@ -1,4 +1,4 @@
-package fr.bgoodes.uhc.files.config.adapters;
+package fr.bgoodes.confutil.adapters;
 
 /**
  * An implementation of {@link TypeAdapter} for handling Java enum types.

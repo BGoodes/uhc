@@ -1,6 +1,8 @@
 package fr.bgoodes.uhc.files.config;
 
-import fr.bgoodes.uhc.files.config.services.ConfigService;
+import fr.bgoodes.confutil.Configuration;
+import fr.bgoodes.confutil.Option;
+import fr.bgoodes.confutil.services.ConfigService;
 
 /**
  * This class represents the configuration for a game of UHC. It defines game-specific
@@ -9,7 +11,7 @@ import fr.bgoodes.uhc.files.config.services.ConfigService;
  * registered with a {@link ConfigService} that handles reading the actual values
  * from a configuration source.
  */
-public class GameConfig {
+public class GameConfig extends Configuration {
 
     public final Option<String> gameName;
     public final Option<Integer> teamSize;
@@ -23,6 +25,8 @@ public class GameConfig {
      *                       reads the configuration from a file or another external source.
      */
     public GameConfig(ConfigService configService) {
+        super(configService);
+
         this.gameName = configService.registerOption("game-name", String.class);
 
         this.teamSize = configService.registerOption("team-settings.team-size", Integer.class);

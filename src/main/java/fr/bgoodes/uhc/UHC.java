@@ -3,16 +3,14 @@ package fr.bgoodes.uhc;
 import fr.bgoodes.uhc.commands.CommandManager;
 import fr.bgoodes.uhc.files.FileHandler;
 import fr.bgoodes.uhc.files.config.ServerConfig;
-import fr.bgoodes.uhc.files.config.services.ConfigService;
-import fr.bgoodes.uhc.files.config.services.YMLConfigService;
-import fr.bgoodes.uhc.files.lang.TranslationKey;
+import fr.bgoodes.confutil.services.ConfigService;
+import fr.bgoodes.confutil.services.YMLConfigService;
 import fr.bgoodes.uhc.game.GameManager;
 import fr.bgoodes.uhc.listeners.ListenerManager;
 import fr.bgoodes.uhc.utils.TextUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.IllegalPluginAccessException;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 

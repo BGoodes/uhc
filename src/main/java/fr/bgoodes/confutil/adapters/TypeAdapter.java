@@ -1,4 +1,4 @@
-package fr.bgoodes.uhc.files.config.adapters;
+package fr.bgoodes.confutil.adapters;
 
 /**
  * An interface for serializing and deserializing custom objects. This must be

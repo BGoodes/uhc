@@ -1,8 +1,9 @@
 package fr.bgoodes.uhc.files.config;
 
-import fr.bgoodes.uhc.files.config.adapters.EnumAdapter;
-import fr.bgoodes.uhc.files.config.adapters.LocationAdapter;
-import fr.bgoodes.uhc.files.config.services.ConfigService;
+import fr.bgoodes.confutil.Option;
+import fr.bgoodes.confutil.adapters.EnumAdapter;
+import fr.bgoodes.confutil.adapters.LocationAdapter;
+import fr.bgoodes.confutil.services.ConfigService;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 

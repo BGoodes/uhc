@@ -1,6 +1,6 @@
-package fr.bgoodes.uhc.files.config;
+package fr.bgoodes.confutil;
 
-import fr.bgoodes.uhc.files.config.adapters.TypeAdapter;
+import fr.bgoodes.confutil.adapters.TypeAdapter;
 
 
 /**

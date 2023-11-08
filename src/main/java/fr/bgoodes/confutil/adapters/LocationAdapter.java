@@ -1,4 +1,4 @@
-package fr.bgoodes.uhc.files.config.adapters;
+package fr.bgoodes.confutil.adapters;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,9 +32,7 @@ public class LocationAdapter implements TypeAdapter<Location> {
 
             return new Location(world, x, y, z);
         }
-        else if (obj instanceof ConfigurationSection) {
-            ConfigurationSection section = (ConfigurationSection) obj;
-
+        else if (obj instanceof ConfigurationSection section) {
             String worldName = section.getString("world-name");
             if (worldName == null)
                 throw new IllegalArgumentException("Invalid location section: " + obj);

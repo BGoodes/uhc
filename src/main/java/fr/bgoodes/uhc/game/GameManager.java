@@ -2,8 +2,8 @@ package fr.bgoodes.uhc.game;
 
 import fr.bgoodes.uhc.UHC;
 import fr.bgoodes.uhc.files.config.GameConfig;
-import fr.bgoodes.uhc.files.config.services.ConfigService;
-import fr.bgoodes.uhc.files.config.services.YMLConfigService;
+import fr.bgoodes.confutil.services.ConfigService;
+import fr.bgoodes.confutil.services.YMLConfigService;
 import fr.bgoodes.uhc.files.lang.TranslationKey;
 import fr.bgoodes.uhc.game.gamemode.UHCModeManager;
 import fr.bgoodes.uhc.game.players.PlayerManager;
@@ -16,9 +16,6 @@ import fr.bgoodes.uhc.utils.MCSound;
 import fr.bgoodes.uhc.utils.TextUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
-import org.jetbrains.annotations.NotNull;
-
-import java.time.Duration;
 
 /**
  * The GameManager class is responsible for managing the game state and all of the game's managers.

@@ -1,8 +1,8 @@
-package fr.bgoodes.uhc.files.config.services;
+package fr.bgoodes.confutil.services;
 
 import fr.bgoodes.uhc.exceptions.MissingOptionException;
-import fr.bgoodes.uhc.files.config.Option;
-import fr.bgoodes.uhc.files.config.adapters.TypeAdapter;
+import fr.bgoodes.confutil.Option;
+import fr.bgoodes.confutil.adapters.TypeAdapter;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
