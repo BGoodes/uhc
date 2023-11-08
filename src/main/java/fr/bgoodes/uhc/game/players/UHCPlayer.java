@@ -1,6 +1,7 @@
 package fr.bgoodes.uhc.game.players;
 
 import fr.bgoodes.uhc.UHC;
+import fr.bgoodes.uhc.game.players.teams.UHCTeam;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -11,8 +12,9 @@ public class UHCPlayer {
     private final UUID uuid;
     private String name;
     private PlayerState state;
+    private UHCTeam team;
 
-    private String langCode;
+    private final String langCode;
 
     public UHCPlayer(Player player, PlayerState state) {
         this.uuid = player.getUniqueId();

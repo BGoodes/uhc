@@ -21,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
 import java.time.Duration;
 
 /**
- * This class is responsible for managing the game.
- * It provides access to the game's managers and configuration.
+ * The GameManager class is responsible for managing the game state and all of the game's managers.
+ * It also provides a few utility methods for broadcasting messages to players and playing sounds.
  */
 public class GameManager {
         // Managers
@@ -56,6 +56,10 @@ public class GameManager {
         // Getters
         public PlayerManager getPlayerManager() {
                 return this.playerManager;
+        }
+
+        public TeamManager getTeamManager() {
+                return this.teamManager;
         }
 
         public WorldManager getWorldManager() {

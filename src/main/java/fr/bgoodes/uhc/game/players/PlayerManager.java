@@ -7,6 +7,8 @@ import org.bukkit.Statistic;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -102,34 +104,40 @@ public class PlayerManager {
         if (uhcPlayer.isConnected()) {
             Player player = uhcPlayer.getPlayer();
 
-            player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
-            player.setAbsorptionAmount(0.0f);
-            player.setHealth(20.0D);
+            // Clear inventory and equipment
+            PlayerInventory inventory = player.getInventory();
+            inventory.clear();
+            inventory.setArmorContents(null);
+            inventory.setExtraContents(null);
 
+            // Clear all potion effects
+            for (PotionEffect effect : player.getActivePotionEffects()) {
+                player.removePotionEffect(effect.getType());
+            }
+
+            // Reset health and food
+            player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             player.setFoodLevel(20);
             player.setSaturation(20.0f);
-            player.setExhaustion(0.0f);
-            player.setStatistic(Statistic.TIME_SINCE_REST, 0);
 
-            player.setExp(0.0f);
+            // Clear experience
+            player.setExp(0);
             player.setLevel(0);
+            player.setTotalExperience(0);
 
+            // Reset player status effects
+            player.setFireTicks(0);
+            player.setFallDistance(0);
+
+            player.setGlowing(false);
             player.setInvisible(false);
 
-            player.setFireTicks(0);
+            // Reset player environment
+            player.resetPlayerTime();
+            player.resetPlayerWeather();
 
-            player.getActivePotionEffects().forEach(p -> player.removePotionEffect(p.getType()));
-
-            clearPlayerInventory(uhcPlayer);
-        }
-    }
-
-    public void clearPlayerInventory(UHCPlayer uhcPlayer) {
-        if (uhcPlayer.isConnected()) {
-            Player player = uhcPlayer.getPlayer();
-
-            player.getInventory().clear();
-            player.getInventory().setArmorContents(new ItemStack[] {null, null, null, null});
+            // Reset player statistics
+            player.setStatistic(Statistic.TIME_SINCE_REST, 0);
         }
     }
 }
