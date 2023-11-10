@@ -7,7 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +20,7 @@ import java.util.Map;
 public class YMLConfigService implements ConfigService {
     private final File file;
     private final YamlConfiguration config;
-    private final Map<String, Option<?>> options = new HashMap<>();
+    private final List<Option<?>> options = new ArrayList<>();
 
     public YMLConfigService(File file) {
         this.file = file;
@@ -32,7 +34,7 @@ public class YMLConfigService implements ConfigService {
             throw new MissingOptionException("Missing option for path: " + path, file);
 
         Option<T> option = new Option<>(path, value);
-        options.put(path, option);
+        options.add(option);
         return option;
     }
 
@@ -44,13 +46,13 @@ public class YMLConfigService implements ConfigService {
 
         T value = adapter.deserialize(obj);
         Option<T> option = new Option<>(path, value, adapter);
-        options.put(path, option);
+        options.add(option);
         return option;
     }
 
     @Override
     public void saveAll() throws IOException {
-        for (Option<?> option : options.values()) {
+        for (Option<?> option : options) {
             if (option.hasAdapter())
                 config.set(option.getPath(), option.serialize());
             else

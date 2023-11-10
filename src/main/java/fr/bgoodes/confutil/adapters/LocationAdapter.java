@@ -31,8 +31,8 @@ public class LocationAdapter implements TypeAdapter<Location> {
             double z = Double.parseDouble(split[3]);
 
             return new Location(world, x, y, z);
-        }
-        else if (obj instanceof ConfigurationSection section) {
+
+        }  else if (obj instanceof ConfigurationSection section) {
             String worldName = section.getString("world-name");
             if (worldName == null)
                 throw new IllegalArgumentException("Invalid location section: " + obj);
