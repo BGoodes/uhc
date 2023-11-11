@@ -1,6 +1,6 @@
 package fr.bgoodes.uhc.files.config;
 
-import fr.bgoodes.confutil.Configuration;
+import fr.bgoodes.confutil.Config;
 import fr.bgoodes.confutil.Option;
 import fr.bgoodes.confutil.adapters.EnumAdapter;
 import fr.bgoodes.confutil.adapters.LocationAdapter;
@@ -16,7 +16,7 @@ import org.bukkit.Location;
  * registered with a {@link ConfigService} that handles reading the actual values
  * from a configuration source.
  */
-public class ServerConfig extends Configuration {
+public class ServerConfig extends Config {
 
     public final Option<String> defaultLanguageCode;
     public final Option<Location> spawnLocation;

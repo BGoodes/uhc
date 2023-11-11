@@ -33,7 +33,7 @@ public class GameManager {
 
         private GameState state;
 
-        // Configuration
+        // Config
         private final GameConfig configuration;
 
         public GameManager() {

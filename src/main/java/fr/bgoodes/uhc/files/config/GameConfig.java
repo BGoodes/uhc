@@ -1,6 +1,6 @@
 package fr.bgoodes.uhc.files.config;
 
-import fr.bgoodes.confutil.Configuration;
+import fr.bgoodes.confutil.Config;
 import fr.bgoodes.confutil.Option;
 import fr.bgoodes.confutil.services.ConfigService;
 
@@ -11,7 +11,7 @@ import fr.bgoodes.confutil.services.ConfigService;
  * registered with a {@link ConfigService} that handles reading the actual values
  * from a configuration source.
  */
-public class GameConfig extends Configuration {
+public class GameConfig extends Config {
 
     public final Option<String> gameName;
     public final Option<Integer> teamSize;
