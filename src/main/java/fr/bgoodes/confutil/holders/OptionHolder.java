@@ -21,7 +21,7 @@ public abstract class OptionHolder<T> {
         this(key, null);
     }
 
-    protected OptionHolder(String key, T defaultValue) {
+    public OptionHolder(String key, T defaultValue) {
         this.key = key;
         this.defaultValue = defaultValue;
         this.value = defaultValue;

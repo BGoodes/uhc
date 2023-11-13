@@ -2,8 +2,8 @@ package fr.bgoodes.confutil.holders;
 
 public class StringHolder extends OptionHolder<String> {
 
-    protected StringHolder() {}
-    protected StringHolder(String key, String defaultValue) {
+    public StringHolder() {}
+    public StringHolder(String key, String defaultValue) {
         super(key, defaultValue);
     }
 

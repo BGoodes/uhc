@@ -30,9 +30,7 @@ public class ConfigFactory {
         List<Method> options = getOptions(configClass);
         Map<Method, OptionHolder<?>> optionsMap = getOptionsMap(options);
 
-
-
-        return null;
+        return new ConfigProxyHandler(optionsMap).getInstance(configClass);
     }
 
     private static Map<Method, OptionHolder<?>> getOptionsMap(List<Method> options) {
@@ -40,6 +38,7 @@ public class ConfigFactory {
 
         for (Method m : options) {
             OptionHolder<?> optionHolder = OptionHolder.getHolder(m.getReturnType());
+
 
             optionsMap.put(m, optionHolder);
         }
@@ -56,6 +55,8 @@ public class ConfigFactory {
                 //TODO : check if "is" prefix is used for boolean.
                 if (m.isAnnotationPresent(Option.class)) {
                     methods.add(m);
+
+                    System.out.println(m.getName());
                 }
             }
         }
