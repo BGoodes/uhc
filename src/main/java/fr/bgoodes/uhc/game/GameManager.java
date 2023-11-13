@@ -1,9 +1,5 @@
 package fr.bgoodes.uhc.game;
 
-import fr.bgoodes.uhc.UHC;
-import fr.bgoodes.uhc.files.config.GameConfig;
-import fr.bgoodes.confutil.services.ConfigService;
-import fr.bgoodes.confutil.services.YMLConfigService;
 import fr.bgoodes.uhc.files.lang.TranslationKey;
 import fr.bgoodes.uhc.game.gamemode.UHCModeManager;
 import fr.bgoodes.uhc.game.players.PlayerManager;
@@ -34,7 +30,6 @@ public class GameManager {
         private GameState state;
 
         // Config
-        private final GameConfig configuration;
 
         public GameManager() {
                 this.playerManager = new PlayerManager();
@@ -46,8 +41,9 @@ public class GameManager {
 
                 this.enterState(GameState.WAITING);
 
-                ConfigService configService = new YMLConfigService(UHC.getFileHandler().defaultGameConfig.getFile());
-                this.configuration = new GameConfig(configService);
+                //TODO: load game config and create getter/setter
+                //ConfigService configService = new YMLConfigService(UHC.getFileHandler().defaultGameConfig.getFile());
+                //this.configuration = new GameConfig(configService);
         }
 
         // Getters
@@ -73,10 +69,6 @@ public class GameManager {
 
         public ScenarioManager getScenarioManager() {
                 return this.scenarioManager;
-        }
-
-        public GameConfig getConfiguration() {
-                return this.configuration;
         }
 
         // Game state

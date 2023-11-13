@@ -2,9 +2,6 @@ package fr.bgoodes.uhc;
 
 import fr.bgoodes.uhc.commands.CommandManager;
 import fr.bgoodes.uhc.files.FileHandler;
-import fr.bgoodes.uhc.files.config.ServerConfig;
-import fr.bgoodes.confutil.services.ConfigService;
-import fr.bgoodes.confutil.services.YMLConfigService;
 import fr.bgoodes.uhc.game.GameManager;
 import fr.bgoodes.uhc.listeners.ListenerManager;
 import fr.bgoodes.uhc.utils.TextUtils;
@@ -26,7 +23,6 @@ public final class UHC extends JavaPlugin {
     private static UHC instance;
     private static GameManager gameManager;
     private static FileHandler fileHandler;
-    private static ServerConfig serverConfig;
 
     /**
      * This method is called when the plugin is enabled.
@@ -45,8 +41,9 @@ public final class UHC extends JavaPlugin {
         }
 
         // Initialize server configuration
-        ConfigService configService = new YMLConfigService(fileHandler.serverConfig.getFile());
-        serverConfig = new ServerConfig(configService);
+        //TODO: Implement server config
+        //ConfigService configService = new YMLConfigService(fileHandler.serverConfig.getFile());
+        //serverConfig = new ServerConfig(configService);
 
         // Load language files
         try {
@@ -88,9 +85,5 @@ public final class UHC extends JavaPlugin {
 
     public static FileHandler getFileHandler() {
         return fileHandler;
-    }
-
-    public static ServerConfig getServerConfig() {
-        return serverConfig;
     }
 }
