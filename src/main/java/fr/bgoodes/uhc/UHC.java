@@ -1,7 +1,11 @@
 package fr.bgoodes.uhc;
 
+import fr.bgoodes.confutil.ConfigFactory;
+import fr.bgoodes.confutil.exceptions.ConfigInstantiationException;
+import fr.bgoodes.confutil.storage.YMLStorage;
 import fr.bgoodes.uhc.commands.CommandManager;
 import fr.bgoodes.uhc.files.FileHandler;
+import fr.bgoodes.uhc.files.config.ServerConfig;
 import fr.bgoodes.uhc.game.GameManager;
 import fr.bgoodes.uhc.listeners.ListenerManager;
 import fr.bgoodes.uhc.utils.TextUtils;
@@ -24,6 +28,8 @@ public final class UHC extends JavaPlugin {
     private static GameManager gameManager;
     private static FileHandler fileHandler;
 
+    private static ServerConfig serverConfig;
+
     /**
      * This method is called when the plugin is enabled.
      * It initializes the file handler, server configuration, and game manager.
@@ -41,9 +47,14 @@ public final class UHC extends JavaPlugin {
         }
 
         // Initialize server configuration
-        //TODO: Implement server config
-        //ConfigService configService = new YMLConfigService(fileHandler.serverConfig.getFile());
-        //serverConfig = new ServerConfig(configService);
+        YMLStorage storage = new YMLStorage(fileHandler.serverConfig.getFile());
+        try {
+            serverConfig = ConfigFactory.getInstance(ServerConfig.class);
+            serverConfig.load(storage);
+        } catch (ConfigInstantiationException e) {
+            Bukkit.getLogger().severe("Failed to load server config : " + e.getMessage());
+            throw new IllegalPluginAccessException("Failed to load server config");
+        }
 
         // Load language files
         try {
