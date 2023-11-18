@@ -1,5 +1,6 @@
 package fr.bgoodes.uhc.game.players;
 
+import fr.bgoodes.uhc.UHC;
 import fr.bgoodes.uhc.game.players.teams.UHCTeam;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,9 +21,7 @@ public class UHCPlayer {
         this.name = player.getName();
         this.state = state;
 
-        //TODO: get langCode from server config
-        //this.langCode = UHC.getServerConfig().defaultLanguageCode.getValue();
-        this.langCode = "fr";
+        this.langCode = UHC.getServerConfig().getDefaultLanguageCode();
     }
 
     public UUID getID() {

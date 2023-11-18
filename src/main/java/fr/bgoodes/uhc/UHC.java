@@ -2,6 +2,7 @@ package fr.bgoodes.uhc;
 
 import fr.bgoodes.confutil.ConfigFactory;
 import fr.bgoodes.confutil.exceptions.ConfigInstantiationException;
+import fr.bgoodes.confutil.exceptions.StorageException;
 import fr.bgoodes.confutil.storage.YMLStorage;
 import fr.bgoodes.uhc.commands.CommandManager;
 import fr.bgoodes.uhc.files.FileHandler;
@@ -9,6 +10,7 @@ import fr.bgoodes.uhc.files.config.ServerConfig;
 import fr.bgoodes.uhc.game.GameManager;
 import fr.bgoodes.uhc.listeners.ListenerManager;
 import fr.bgoodes.uhc.utils.TextUtils;
+import fr.bgoodes.uhc.utils.confutil.ConfUtilRegister;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.IllegalPluginAccessException;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,7 +29,6 @@ public final class UHC extends JavaPlugin {
     private static UHC instance;
     private static GameManager gameManager;
     private static FileHandler fileHandler;
-
     private static ServerConfig serverConfig;
 
     /**
@@ -46,12 +47,14 @@ public final class UHC extends JavaPlugin {
             throw new IllegalPluginAccessException("Failed to initialize files");
         }
 
+        ConfUtilRegister.initialize();
+
         // Initialize server configuration
         YMLStorage storage = new YMLStorage(fileHandler.serverConfig.getFile());
         try {
             serverConfig = ConfigFactory.getInstance(ServerConfig.class);
             serverConfig.load(storage);
-        } catch (ConfigInstantiationException e) {
+        } catch (StorageException | ConfigInstantiationException e) {
             Bukkit.getLogger().severe("Failed to load server config : " + e.getMessage());
             throw new IllegalPluginAccessException("Failed to load server config");
         }
@@ -88,6 +91,10 @@ public final class UHC extends JavaPlugin {
 
     public static UHC getInstance() {
         return instance;
+    }
+
+    public static ServerConfig getServerConfig() {
+        return serverConfig;
     }
 
     public static GameManager getGameManager() {

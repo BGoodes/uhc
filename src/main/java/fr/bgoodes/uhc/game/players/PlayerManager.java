@@ -1,5 +1,7 @@
 package fr.bgoodes.uhc.game.players;
 
+import fr.bgoodes.uhc.UHC;
+import fr.bgoodes.uhc.files.config.ServerConfig;
 import org.bukkit.GameMode;
 import org.bukkit.Statistic;
 import org.bukkit.attribute.Attribute;
@@ -79,10 +81,9 @@ public class PlayerManager {
             Player player = uhcPlayer.getPlayer();
             resetPlayer(uhcPlayer);
 
-            //TODO: teleport to spawn and set game mode (config)
-            //ServerConfig serverConfig = UHC.getServerConfig();
-            //player.setGameMode(serverConfig.defaultGamemode.getValue());
-            //player.teleport(serverConfig.spawnLocation.getValue());
+            ServerConfig serverConfig = UHC.getServerConfig();
+            player.setGameMode(serverConfig.getDefaultGamemode());
+            player.teleport(serverConfig.getSpawnLocation());
         }
     }
 
@@ -94,8 +95,7 @@ public class PlayerManager {
             resetPlayer(uhcPlayer);
 
             player.setGameMode(GameMode.SPECTATOR);
-            //TODO: teleport to spawn (config)
-            //player.teleport(UHC.getServerConfig().spawnLocation.getValue());
+            player.teleport(UHC.getServerConfig().getSpawnLocation());
         }
     }
 

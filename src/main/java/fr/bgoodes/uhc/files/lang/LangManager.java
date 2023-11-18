@@ -93,9 +93,8 @@ public class LangManager {
     public String getTranslation(TranslationKey key, String langCode) {
         HashMap<TranslationKey, String> langConfig = languages.get(langCode);
 
-        //TODO: find default language.
-        //if (langConfig == null)
-        //    langConfig = languages.get(UHC.getServerConfig().defaultLanguageCode.getValue());
+        if (langConfig == null)
+            langConfig = languages.get(UHC.getServerConfig().getDefaultLanguageCode());
 
         if (langConfig == null)
             throw new IllegalStateException("Default language not found, check the server-config.yml.");

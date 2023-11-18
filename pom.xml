@@ -77,8 +77,7 @@
         <dependency>
             <groupId>com.github.BGoodes</groupId>
             <artifactId>conf-util</artifactId>
-            <version>v1.0-snapshot</version>
+            <version>v0.1.0-snapshot</version>
         </dependency>
-
     </dependencies>
 </project>

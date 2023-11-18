@@ -6,9 +6,5 @@
 default-language-code: fr
 
 lobby-settings:
-  spawn-location:
-    world-name: world
-    x: 0
-    y: 100
-    z: 0
+  spawn-location: "world;0;100;0"
   default-gamemode: "ADVENTURE"
