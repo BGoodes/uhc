@@ -69,7 +69,11 @@ public final class UHC extends JavaPlugin {
 
 
         // Initialize game manager
-        gameManager = new GameManager();
+        try {
+            gameManager = new GameManager();
+        } catch (ConfigInstantiationException e) {
+            throw new IllegalPluginAccessException("Failed to instantiate game settings");
+        }
 
         new ListenerManager(this).initializeListeners();
         new CommandManager(this).initializeCommands();
